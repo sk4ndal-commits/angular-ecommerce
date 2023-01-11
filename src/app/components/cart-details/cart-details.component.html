@@ -43,7 +43,7 @@
                 </div>
               </div>
 
-              <button (click)="remove(cartItem)" class="btn btn-primary btn-sm" >Remove</button>
+              <button (click)="remove(cartItem)" class="btn btn-primary btn-sm" type="button">Remove</button>
 
               <p>Subtotal: {{cartItem.unitPrice*cartItem.quantity | currency:'USD'}}</p>
             </td>

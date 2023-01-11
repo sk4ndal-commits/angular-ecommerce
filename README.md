@@ -1,27 +1,38 @@
 # AngularEcommerce
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+This application was part of a Udemy course.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Loads product list from database
+- Add items to your cart (saved in sessionsStorage such that site refresh does not empty your cart)
+- Add or remove items from your cart
+- Checkout, fill in information for the payment process (handled via Stripe)
+- User login via Okta+Oauth2+OpenID; Once logged in, users can see previous order history and access membership only content
+- Filter and search functions such as different product categories
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular
+- Okta
+- Stripe
+- Bootstrap
 
-## Build
+## Things Learned
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Securing routes with Okta
+- Handle payments via Stripe integration
+- Application and Code design
+- Ease of use of bootstrap
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Issues
 
-## Running end-to-end tests
+The user login hangs in an infinite loop after pressing the ``Anmelden`` button. No error messages occur, all configurations
+on the Okta-server-side and the client are correct, all entities necessary to succeed the operation are correctly defined.
+No errors in the Okta-application-dashboard. The Okta sign in widget uses callback function on login which are never called.
+It seems to be a problem on the Okta-server side.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Overview
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
