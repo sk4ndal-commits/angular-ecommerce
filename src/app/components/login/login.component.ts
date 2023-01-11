@@ -25,13 +25,6 @@ export class LoginComponent implements OnInit {
         issuer: myAppConfig.oidc.issuer,
         scopes: myAppConfig.oidc.scopes,
       },
-      /*
-      // need to configure okta instance to make that work:
-      // -> directory -> self-service registration
-      features: {
-        registration: true
-      }
-       */
     });
 
   }
