@@ -1,0 +1,53 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div *ngIf="currentCategoryName.length != 0">
+      <h4>Selected Category: {{currentCategoryName}}</h4>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let tProd of products" class="col-md-3">
+          <div class="product-box">
+            <a routerLink="/products/{{tProd.id}}">
+              <img class="img-responsive" src="{{tProd.imageUrl}}">
+            </a>
+            <a routerLink="/products/{{tProd.id}}"><h1>{{tProd.name}}</h1></a>
+            <div class="price">{{tProd.unitPrice | currency:'USD'}}</div>
+            <button (click)="addToCart(tProd)" class="btn btn-primary btn-sm" >add to cart</button>
+          </div>
+        </div>
+        <div *ngIf="products.length == 0" class="alert alert-warning col-md-12" role="alert">
+          <p>No Products Found</p>
+        </div>
+      </div>
+      <!-- footer -->
+      <div class="footer-pagination">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-9" style="padding-left: 30%;">
+                <ngb-pagination
+                  [(page)]="pageNumber"
+                  [pageSize]="pageSize"
+                  [collectionSize]="totalElements"
+                  (pageChange)="listProducts()"
+                  [maxSize]="5"
+                  [boundaryLinks]="true">
+                </ngb-pagination>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-2" style="text-align: right;">
+            <span class="mr-2">Page Size</span>
+            <select #selectedPageSize (change)="updatePageSize(selectedPageSize.value)">
+              <option selected="true">5</option>
+              <option>10</option>
+              <option>20</option>
+              <option>50</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!-- end footer -->
+    </div>
+  </div>
+</div>
