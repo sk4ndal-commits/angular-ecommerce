@@ -37,6 +37,3 @@ It seems to be a problem on the Okta-server side.
 
 - Add tests and fuzzing
 
-
-## Images
-
