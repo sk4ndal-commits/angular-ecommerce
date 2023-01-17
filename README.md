@@ -31,7 +31,6 @@ This application was part of a Udemy course.
 The user login hangs in an infinite loop after pressing the ``Anmelden`` button. No error messages occur, all configurations
 on the Okta-server-side and the client are correct, all entities necessary to succeed the operation are correctly defined.
 No errors in the Okta-application-dashboard. The Okta sign in widget uses callback function on login which are never called.
-It seems to be a problem on the Okta-server side.
 
 ## Future Work
 
