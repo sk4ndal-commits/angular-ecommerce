@@ -1,17 +1,11 @@
-import { Injector, NgModule } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ProductListComponent} from './components/product-list/product-list.component';
+import {ProductDetailsComponent} from './components/product-details/product-details.component';
 import {CartDetailsComponent} from "./components/cart-details/cart-details.component";
 import {CheckoutComponent} from "./components/checkout/checkout.component";
-import { MembersPageComponent } from './components/members-page/members-page.component';
-import { OktaAuth } from '@okta/okta-auth-js';
+import {MembersPageComponent} from './components/members-page/members-page.component';
 import {OrderHistoryComponent} from "./components/order-history/order-history.component";
-
-function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector) {
-  const router = injector.get(Router);
-  router.navigate(['/login']);
-}
 
 const routes: Routes = [
   {path: 'members', component: MembersPageComponent},
@@ -31,4 +25,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
