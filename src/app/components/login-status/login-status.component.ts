@@ -5,6 +5,7 @@ import {OktaAuth} from "@okta/okta-auth-js";
 @Component({
   selector: 'app-login-status',
   templateUrl: './login-status.component.html',
+  standalone: true,
   styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit {
