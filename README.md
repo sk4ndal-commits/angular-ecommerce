@@ -1,7 +1,5 @@
 # AngularEcommerce
 
-This application was part of a Udemy course.
-
 ## Features
 
 - Loads product list from database
