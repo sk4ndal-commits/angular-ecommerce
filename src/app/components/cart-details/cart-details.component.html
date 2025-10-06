@@ -2,71 +2,81 @@
   <div class="section-content section-content-p30">
     <div class="container-fluid">
 
-      <div *ngIf="cartItems.length > 0">
-        <table class="table table-bordered">
-          <tr>
-            <th style="width: 20%">Product Image</th>
-            <th style="width: 50%">Product Detail</th>
-            <th style="width: 30%">UnitPrice</th>
-          </tr>
+      @if (cartItems.length == 0) {
+        <div class="alert alert-warning col-md-12" role="alert">
+          <p>No Items in Cart</p>
+        </div>
+      } @else {
+        <div>
+          <table class="table table-bordered">
+            <tr>
+              <th style="width: 20%">Product Image</th>
+              <th style="width: 50%">Product Detail</th>
+              <th style="width: 30%">UnitPrice</th>
+            </tr>
 
-          <tr *ngFor="let cartItem of cartItems">
-            <td>
-              <img src="{{cartItem.imageUrl}}" class="img-responsive" style="width: 150px" alt="product image">
-            </td>
-            <td>
-              <p>{{ cartItem.name }}</p>
-              <p>{{cartItem.unitPrice | currency:'USD'}}</p>
-            </td>
-            <td>
+            @for (cartItem of cartItems; track cartItem.name) {
+              <tr>
+                <td>
+                  <img src="{{cartItem.imageUrl}}" class="img-responsive"
+                       style="width: 150px" alt="product image">
+                </td>
+                <td>
+                  <p>{{ cartItem.name }}</p>
+                  <p>{{ cartItem.unitPrice | currency:'USD' }}</p>
+                </td>
+                <td>
 
-              <div class="items">
-                <label>Quantity:</label>
-                <div class="row no-gutters">
-                  <div class="col">
-                    <button class="btn btn-primary btn-sm" (click)="addItem(cartItem)">
-                      <i class="fa fa-plus"></i>
-                    </button>
+                  <div class="items">
+                    <label>Quantity:</label>
+                    <div class="row no-gutters">
+                      <div class="col">
+                        <button class="btn btn-primary btn-sm"
+                                (click)="addItem(cartItem)">
+                          <i class="fa fa-plus"></i>
+                        </button>
+                      </div>
+
+                      <div class="col ml-4 mr-2">
+                        {{ cartItem.quantity }}
+                      </div>
+
+                      <div class="col">
+                        <button class="btn btn-primary btn-sm"
+                                (click)="decrementQuantity(cartItem)">
+                          <i class="fa fa-minus"></i>
+                        </button>
+                      </div>
+
+                      <div class="col-8"></div>
+                    </div>
                   </div>
 
-                  <div class="col ml-4 mr-2">
-                    {{cartItem.quantity}}
-                  </div>
+                  <button (click)="remove(cartItem)"
+                          class="btn btn-primary btn-sm"
+                          type="button">Remove
+                  </button>
 
-                  <div class="col">
-                    <button class="btn btn-primary btn-sm" (click)="decrementQuantity(cartItem)">
-                      <i class="fa fa-minus"></i>
-                    </button>
-                  </div>
+                  <p>
+                    Subtotal: {{ cartItem.unitPrice * cartItem.quantity | currency:'USD' }}</p>
+                </td>
+              </tr>
+            }
 
-                  <div class="col-8"></div>
-                </div>
-              </div>
-
-              <button (click)="remove(cartItem)" class="btn btn-primary btn-sm" type="button">Remove</button>
-
-              <p>Subtotal: {{cartItem.unitPrice*cartItem.quantity | currency:'USD'}}</p>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2"></td>
-            <td style="font-weight: bold;">
-              <p>Total Quantity: {{totalQuantity}}</p>
-              <p>Shipping: FREE</p>
-              <p>Total Price: {{totalPrice | currency:'USD'}}</p>
-              <p><a routerLink="/checkout" class="btn btn-primary">Checkout</a></p>
-            </td>
-          </tr>
-        </table>
-
-
-      </div>
-
-      <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
-        <p>No Items in Cart</p>
-      </div>
-
+            <tr>
+              <td colspan="2"></td>
+              <td style="font-weight: bold;">
+                <p>Total Quantity: {{ totalQuantity }}</p>
+                <p>Shipping: FREE</p>
+                <p>Total Price: {{ totalPrice | currency:'USD' }}</p>
+                <p><a routerLink="/checkout"
+                      class="btn btn-primary">Checkout</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      }
     </div>
   </div>
 </div>

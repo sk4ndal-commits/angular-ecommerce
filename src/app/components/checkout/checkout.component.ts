@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from "@angular/forms";
 import {CartService} from "../../services/cart.service";
 import {Luv2ShopFormServiceService} from "../../services/luv2-shop-form-service.service";
 import {Country} from "../../common/country";
@@ -14,10 +20,15 @@ import {Customer} from "../../common/customer";
 import {Address} from "../../common/address";
 import {environment} from "../../../environments/environment";
 import {PaymentInfo} from "../../common/payment-info";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
+  imports: [
+    ReactiveFormsModule,
+    CurrencyPipe
+  ],
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {

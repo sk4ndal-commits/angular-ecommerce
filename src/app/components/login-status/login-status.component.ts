@@ -1,11 +1,15 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {OKTA_AUTH, OktaAuthStateService} from "@okta/okta-angular";
 import {OktaAuth} from "@okta/okta-auth-js";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-login-status',
   templateUrl: './login-status.component.html',
   standalone: true,
+  imports: [
+    RouterLink
+  ],
   styleUrls: ['./login-status.component.scss']
 })
 export class LoginStatusComponent implements OnInit {

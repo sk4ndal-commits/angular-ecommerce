@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
 import {CartService} from "../../services/cart.service";
 import {CartItem} from "../../common/cart-item";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
+  imports: [
+    CurrencyPipe,
+    RouterLink
+  ],
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {

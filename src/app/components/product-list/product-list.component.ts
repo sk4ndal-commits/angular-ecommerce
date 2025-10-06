@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/services/product.service';
 import {CartService} from "../../services/cart.service";
 import {CartItem} from "../../common/cart-item";
+import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list-grid.component.html',
+  imports: [
+    NgbPagination,
+    RouterLink,
+    CurrencyPipe
+  ],
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {

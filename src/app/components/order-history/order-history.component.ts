@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderHistoryService} from "../../services/order-history.service";
 import {OrderHistory} from "../../common/order-history";
+import {CurrencyPipe, DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
+  imports: [
+    CurrencyPipe,
+    DatePipe
+  ],
   styleUrls: ['./order-history.component.scss']
 })
 export class OrderHistoryComponent implements OnInit {

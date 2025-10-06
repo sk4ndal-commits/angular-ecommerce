@@ -4,30 +4,34 @@
 
       <h3>Your Orders</h3>
 
-      <div *ngIf="orderHistories.length>0">
+      @if (orderHistories.length == 0) {
+        <div class="alert alert-warning col-md-12" role="alert">
+          No Orders Found
+        </div>
+      } @else {
 
-        <table class="table table-bordered">
-          <tr>
-            <th style="width: 20%">Order Tracking Number</th>
-            <th style="width: 10%">Total Price</th>
-            <th style="width: 10%">Total Quantity</th>
-            <th style="width: 10%">Date</th>
-          </tr>
+        <div>
 
-          <tr *ngFor="let order of orderHistories">
-            <td>{{ order.orderTrackingNumber }}</td>
-            <td>{{ order.totalPrice | currency: 'USD' }}</td>
-            <td>{{ order.totalQuantity }}</td>
-            <td>{{ order.dateCreated | date: 'medium' }}</td>
-          </tr>
-        </table>
+          <table class="table table-bordered">
+            <tr>
+              <th style="width: 20%">Order Tracking Number</th>
+              <th style="width: 10%">Total Price</th>
+              <th style="width: 10%">Total Quantity</th>
+              <th style="width: 10%">Date</th>
+            </tr>
 
-      </div>
+            @for (order of orderHistories; track order.id) {
+              <tr>
+                <td>{{ order.orderTrackingNumber }}</td>
+                <td>{{ order.totalPrice | currency: 'USD' }}</td>
+                <td>{{ order.totalQuantity }}</td>
+                <td>{{ order.dateCreated | date: 'medium' }}</td>
+              </tr>
+            }
+          </table>
 
-      <div *ngIf="orderHistories.length==0" class="alert alert-warning col-md-12" role="alert">
-        No Orders Found
-      </div>
-
+        </div>
+      }
     </div>
   </div>
 </div>

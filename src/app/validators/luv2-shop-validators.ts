@@ -6,6 +6,6 @@ export class Luv2ShopValidators {
     // @ts-ignore
     return (control.value != null) && (control.value.trim().length === 0)
       ? {'notOnlyWhitespace': true}
-      : null;
+      : {'notOnlyWhitespace': false};
   }
 }
