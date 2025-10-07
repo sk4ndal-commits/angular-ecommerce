@@ -25,6 +25,14 @@ const oktaAuth = new OktaAuth(oktaConfig);
 */
 @NgModule({
   declarations: [
+
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    ReactiveFormsModule,
     AppComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
@@ -36,13 +44,6 @@ const oktaAuth = new OktaAuth(oktaConfig);
     MeinCallbackComponent,
     MembersPageComponent,
     OrderHistoryComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgbModule,
-    ReactiveFormsModule,
   ],
   // make service available across app
   providers: [
