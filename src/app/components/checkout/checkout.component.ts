@@ -1,11 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators
-} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CartService} from "../../services/cart.service";
 import {Luv2ShopFormServiceService} from "../../services/luv2-shop-form-service.service";
 import {Country} from "../../common/country";
@@ -51,7 +45,8 @@ export class CheckoutComponent implements OnInit {
               private cartService: CartService,
               private luv2shopService: Luv2ShopFormServiceService,
               private checkoutService: CheckoutService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.createCheckoutForm();
@@ -85,7 +80,7 @@ export class CheckoutComponent implements OnInit {
       customer: this.formBuilder.group({
         firstName: new FormControl(
           '',
-          [Validators.required, Validators.minLength(2), Luv2ShopValidators.notOnlyWhitespace]) ,
+          [Validators.required, Validators.minLength(2), Luv2ShopValidators.notOnlyWhitespace]),
         lastName: new FormControl(
           '',
           [Validators.required, Validators.minLength(2), Luv2ShopValidators.notOnlyWhitespace]),
@@ -184,7 +179,7 @@ export class CheckoutComponent implements OnInit {
     );
 
     this.paymentInfo.currency = 'USD';
-    this.paymentInfo.amount = Math.round(this.totalPrice*100);
+    this.paymentInfo.amount = Math.round(this.totalPrice * 100);
 
     this.paymentInfo.receiptEmail = purchase.customer.email;
 
@@ -203,7 +198,7 @@ export class CheckoutComponent implements OnInit {
 
                   address: {
                     line1: purchase.billingAddress.street,
-                    city:purchase.billingAddress.city,
+                    city: purchase.billingAddress.city,
                     state: purchase.billingAddress.state,
                     postal_code: purchase.billingAddress.zipcode,
                     country: this.billingCountry.value.code
@@ -213,41 +208,38 @@ export class CheckoutComponent implements OnInit {
               }
             }, {handleActions: false}
           ).then((result: any) => {
-              if (result.error) {
-                alert(`There was an error: ${result.error.message}`);
-                this.isDisabled = false;
-              }
-              else {
-                this.checkoutService.placeOrder(purchase).subscribe({
-                  next: (response: any) => {
-                    alert(`Your order has been received.\n Your tracking number: ${response.orderTrackingNumber}`);
-                    this.resetCart();
-                    this.isDisabled = false;
-                  },
-                  error: (err: any) => {
-                    alert(`There was an error: ${err.message}`);
-                    this.isDisabled = false;
-                  }
-                })
-              }
+            if (result.error) {
+              alert(`There was an error: ${result.error.message}`);
+              this.isDisabled = false;
+            } else {
+              this.checkoutService.placeOrder(purchase).subscribe({
+                next: (response: any) => {
+                  alert(`Your order has been received.\n Your tracking number: ${response.orderTrackingNumber}`);
+                  this.resetCart();
+                  this.isDisabled = false;
+                },
+                error: (err: any) => {
+                  alert(`There was an error: ${err.message}`);
+                  this.isDisabled = false;
+                }
+              })
+            }
           })
         }
       );
-    }
-    else {
+    } else {
       this.checkoutFormGroup.markAllAsTouched();
       return;
     }
   }
 
   billEquShipAddress(event: any) {
-    if (event.target.checked){
+    if (event.target.checked) {
       this.checkoutFormGroup.controls['billingAddress'].setValue(
         this.checkoutFormGroup.controls['shippingAddress'].value
       );
       this.billingStates = this.shippingStates;
-    }
-    else {
+    } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
       this.billingStates = [];
     }
@@ -262,8 +254,7 @@ export class CheckoutComponent implements OnInit {
       data => {
         if (formGroupName === 'shippingAddress') {
           this.shippingStates = data;
-        }
-        else {
+        } else {
           this.billingStates = data;
         }
 
@@ -272,21 +263,57 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  get firstName() {return this.checkoutFormGroup.get('customer.firstName')!;}
-  get lastName() {return this.checkoutFormGroup.get('customer.lastName')!;}
-  get email() {return this.checkoutFormGroup.get('customer.email')!;}
+  get firstName() {
+    return this.checkoutFormGroup.get('customer.firstName')!;
+  }
 
-  get shippingStreet() {return this.checkoutFormGroup.get('shippingAddress.street')!;}
-  get shippingCountry() {return this.checkoutFormGroup.get('shippingAddress.country')!;}
-  get shippingState() {return this.checkoutFormGroup.get('shippingAddress.state')!;}
-  get shippingCity() {return this.checkoutFormGroup.get('shippingAddress.city')!;}
-  get shippingZipcode() {return this.checkoutFormGroup.get('shippingAddress.zipCode')!;}
+  get lastName() {
+    return this.checkoutFormGroup.get('customer.lastName')!;
+  }
 
-  get billingStreet() {return this.checkoutFormGroup.get('billingAddress.street')!;}
-  get billingCountry() {return this.checkoutFormGroup.get('billingAddress.country')!;}
-  get billingState() {return this.checkoutFormGroup.get('billingAddress.state')!;}
-  get billingCity() {return this.checkoutFormGroup.get('billingAddress.city')!;}
-  get billingZipcode() {return this.checkoutFormGroup.get('billingAddress.zipCode')!;}
+  get email() {
+    return this.checkoutFormGroup.get('customer.email')!;
+  }
+
+  get shippingStreet() {
+    return this.checkoutFormGroup.get('shippingAddress.street')!;
+  }
+
+  get shippingCountry() {
+    return this.checkoutFormGroup.get('shippingAddress.country')!;
+  }
+
+  get shippingState() {
+    return this.checkoutFormGroup.get('shippingAddress.state')!;
+  }
+
+  get shippingCity() {
+    return this.checkoutFormGroup.get('shippingAddress.city')!;
+  }
+
+  get shippingZipcode() {
+    return this.checkoutFormGroup.get('shippingAddress.zipCode')!;
+  }
+
+  get billingStreet() {
+    return this.checkoutFormGroup.get('billingAddress.street')!;
+  }
+
+  get billingCountry() {
+    return this.checkoutFormGroup.get('billingAddress.country')!;
+  }
+
+  get billingState() {
+    return this.checkoutFormGroup.get('billingAddress.state')!;
+  }
+
+  get billingCity() {
+    return this.checkoutFormGroup.get('billingAddress.city')!;
+  }
+
+  get billingZipcode() {
+    return this.checkoutFormGroup.get('billingAddress.zipCode')!;
+  }
 
   private resetCart() {
     this.cartService.cartItems = [];
@@ -311,8 +338,7 @@ export class CheckoutComponent implements OnInit {
 
       if (event.complete) {
         this.displayError.text = '';
-      }
-      else if (event.error) {
+      } else if (event.error) {
         this.displayError.textContent = event.error.message;
       }
     });
