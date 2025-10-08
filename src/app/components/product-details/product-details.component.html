@@ -1,16 +1,22 @@
 <div class="detail-section">
   <div class="container-fluid">
 
-    <p style="margin-top: 100px">{{product?.name}}</p>
-    <img src="{{product?.imageUrl}}" class="detail-img" alt="image">
+    @if (product) {
+      <p style="margin-top: 100px">{{ product.name }}</p>
+      <img src="{{product.imageUrl}}" class="detail-img" alt="image">
 
-    <div class="price">{{product?.unitPrice | currency:'USD'}}</div>
-    <button (click)="addToCart()" class="btn btn-primary btn-sm">add to cart</button>
-    <hr>
-    <h4>description</h4>
-    <p>{{product?.description}}</p>
+      <div class="price">{{ product.unitPrice | currency:'USD' }}</div>
+      <button (click)="addToCart()" class="btn btn-primary btn-sm">add to cart
+      </button>
+      <hr>
+      <h4>description</h4>
+      <p>{{ product.description }}</p>
 
-    <a routerLink="/products" class="mt-5">back to product list</a>
+      <a routerLink="/products" class="mt-5">back to product list</a>
+    } @else {
+      <p>loading...</p>
+    }
+
 
   </div>
 </div>

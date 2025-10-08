@@ -17,10 +17,12 @@ import {CurrencyPipe} from "@angular/common";
 })
 export class ProductDetailsComponent implements OnInit {
 
-  product!: Product;
+  product?: Product | undefined;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
-  }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private cartService: CartService) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -38,7 +40,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(new CartItem(this.product));
+    if (this.product) this.cartService.addToCart(new CartItem(this.product));
   }
 
 }

@@ -1,19 +1,21 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Product } from '../common/product';
-import { map } from 'rxjs/operators';
-import { ProductCategory } from '../common/product-category';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Product} from '../common/product';
+import {map} from 'rxjs/operators';
+import {ProductCategory} from '../common/product-category';
 import {environment} from "../../environments/environment";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl: string = environment.luv2shopApiUrl +'/products';
+  private baseUrl: string = environment.luv2shopApiUrl + '/products';
   private categoryUrl: string = environment.luv2shopApiUrl + '/product-category';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getProductListPaginate(thePage: number, thePageSize: number, theCategoryId: number): Observable<GetProducts> {
     const url = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}&page=${thePage}&size=${thePageSize}`;

@@ -143,6 +143,9 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
+
+    console.log("submitting form");
+
     let order = new Order(this.totalQuantity, this.totalPrice);
 
     const cartItems = this.cartService.cartItems;

@@ -29,8 +29,8 @@ export class ProductListComponent implements OnInit {
   previousCategoryId: number = 1;
   previousKeyword: string = "";
 
-  previuousCartQuantity: number = 0;
-  previuousCartPrice: number = 0;
+  previousCartQuantity: number = 0;
+  previousCartPrice: number = 0;
 
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
