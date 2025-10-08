@@ -6,6 +6,7 @@ import {CartService} from "../../services/cart.service";
 import {CartItem} from "../../common/cart-item";
 import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
 import {CurrencyPipe} from "@angular/common";
+import { ProductPreloadService } from 'src/app/services/product-preload.service';
 
 @Component({
   selector: 'app-product-list',
@@ -33,8 +34,12 @@ export class ProductListComponent implements OnInit {
   previousCartPrice: number = 0;
 
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
-  }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private cartService: CartService,
+    private productPreloadService: ProductPreloadService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -100,5 +105,9 @@ export class ProductListComponent implements OnInit {
 
   addToCart(tProd: Product) {
     this.cartService.addToCart(new CartItem(tProd));
+  }
+
+  preloadProduct(product: Product) {
+    this.productPreloadService.setProduct(product);
   }
 }

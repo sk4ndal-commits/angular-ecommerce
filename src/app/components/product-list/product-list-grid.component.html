@@ -9,7 +9,7 @@
       <div class="row">
         @for (tProd of products; track tProd.name) {
           <div class="col-md-3">
-            <div class="product-box">
+            <div class="product-box" (mouseenter)="preloadProduct(tProd)">
               <a routerLink="/products/{{tProd.id}}">
                 <img class="img-responsive" src="{{tProd.imageUrl}}" alt="image">
               </a>

@@ -5,6 +5,7 @@ import {ProductService} from 'src/app/services/product.service';
 import {CartService} from "../../services/cart.service";
 import {CartItem} from "../../common/cart-item";
 import {CurrencyPipe} from "@angular/common";
+import { ProductPreloadService } from 'src/app/services/product-preload.service';
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +23,9 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private cartService: CartService) {}
+    private cartService: CartService,
+    private productPreloadService: ProductPreloadService
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -32,11 +35,17 @@ export class ProductDetailsComponent implements OnInit {
 
   handleProductDetails() {
     const id: number = +this.route.snapshot.paramMap.get("id")!;
-    this.productService.getProduct(id).subscribe(
-      data => {
-        this.product = data;
-      }
-    );
+    const preloaded = this.productPreloadService.getProduct();
+    if (preloaded && Number(preloaded.id) == id) {
+      this.product = preloaded;
+      this.productPreloadService.clearProduct();
+    } else {
+      this.productService.getProduct(id).subscribe(
+        data => {
+          this.product = data;
+        }
+      );
+    }
   }
 
   addToCart() {
