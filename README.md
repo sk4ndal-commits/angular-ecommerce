@@ -9,28 +9,30 @@
 - User login via Okta+Oauth2+OpenID; Once logged in, users can see previous order history and access membership only content
 - Filter and search functions such as different product categories
 
+### Home
+
+![Home](./images/home.png)
+
+### Search
+
+![Search](./images/search.png)
+
+### Details
+
+![Details](./images/details.png)
+
+### Checkout
+
+![Checkout](./images/checkout.png)
+
+### Billing
+
+![Billing](./images/checout_form.png)
+
 ## Technologies Used
 
 - Angular
 - Okta
 - Stripe
 - Bootstrap
-
-## Things Learned
-
-- Securing routes with Okta
-- Handle payments via Stripe integration
-- Application and Code design
-- Ease of use of bootstrap
-
-
-## Issues
-
-The user login hangs in an infinite loop after pressing the ``Anmelden`` button. No error messages occur, all configurations
-on the Okta-server-side and the client are correct, all entities necessary to succeed the operation are correctly defined.
-No errors in the Okta-application-dashboard. The Okta sign in widget uses callback function on login which are never called.
-
-## Future Work
-
-- Add tests and fuzzing
 
