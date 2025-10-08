@@ -30,10 +30,6 @@ export class ProductListComponent implements OnInit {
   previousCategoryId: number = 1;
   previousKeyword: string = "";
 
-  previousCartQuantity: number = 0;
-  previousCartPrice: number = 0;
-
-
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -72,7 +68,12 @@ export class ProductListComponent implements OnInit {
     }
     this.previousCategoryId = this.currentCategoryId;
 
-    this.productService.getProductListPaginate(this.pageNumber - 1, this.pageSize, this.currentCategoryId).subscribe(
+    this.productService
+      .getProductListPaginate(
+        this.pageNumber - 1,
+        this.pageSize,
+        this.currentCategoryId)
+      .subscribe(
       this.processResult()
     );
   }
