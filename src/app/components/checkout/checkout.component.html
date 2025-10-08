@@ -91,7 +91,7 @@
               <div class="input-space">
                 <select formControlName="country"
                         (change)="getStates('shippingAddress')">
-                  @for (country of countries; track country.name) {
+                  @for (country of countries; track country.id) {
 
                     <option [ngValue]="country">
                       {{ country.name }}
@@ -122,7 +122,7 @@
               <div class="input-space">
                 <select formControlName="state">
 
-                  @for (state of shippingStates; track state.name) {
+                  @for (state of shippingStates; track state.id) {
                     <option [ngValue]="state">
                       {{ state.name }}
                     </option>
