@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, ReplaySubject, Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import {CartItem} from "../common/cart-item";
 
 @Injectable({
@@ -26,7 +26,8 @@ export class CartService {
   }
 
   addToCart(cartItemToAdd: CartItem) {
-    let existingCartItem = this.cartItems.find(carItem => carItem.id === cartItemToAdd.id);
+    let existingCartItem = this.cartItems
+      .find(carItem => carItem.id === cartItemToAdd.id);
     let alreadyInCart = existingCartItem != undefined;
 
     if (!alreadyInCart) {
@@ -56,8 +57,6 @@ export class CartService {
   }
 
   decrementQuantity(cartItem: CartItem) {
-    let itemToDecrement: CartItem = this.cartItems.find(item => item.id === cartItem.id)!;
-
     cartItem.quantity--;
 
     if (cartItem.quantity === 0) {
